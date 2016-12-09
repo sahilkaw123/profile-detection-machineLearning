@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Home</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+	<!-- Optional theme -->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+
+	<script src="https://pixlcore.com/demos/webcamjs/webcam.js"></script>
+	<!-- <script src="/static/webcam1.js"></script> -->
+
+</head>
+<body >
+<div class="container-fluid text-center" style="background-image: url('app/bg.png');">
+	<h1 class="text-success" style="margin-top: 50px; font-size: 80px;">P R O D A</h1>
+	<p class="text-muted " ><b>PRO</b>file <b>D</b>etection and <b>A</b>nalysis</p>
+	<form id="form" action="/submit" style="margin-top: 100px" type="post">
+		<input type="hidden" name="img" id="img">
+		<button type="submit" class="btn-lg btn btn-success">Start New Meeting</button>
+	</form>
+    <div class="row">
+    <div class="col-md-6 text-center">
+        <div style="margin: 0 auto;width:320px;">
+        <div id="my_camera" style="width:320px; height:240px;"></div>
+        </div>
+    </div>
+    <div class="col-md-6 text-center">
+        <div style="margin: 0 auto; width: 320px;">
+        <div id="my_result"></div>
+        <a href="javascript:void(take_snapshot())">Take Snapshot</a>
+        </div>
+    </div>
+    </div>
+
+</div>
+    
+
+
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+<script language="JavaScript">
+    Webcam.attach( '#my_camera' );
+    var imgUri;
+    $('form').submit(function(e){
+        // e.preventDefault()
+        take_snapshot();
+        // $(this).submit();
+    });
+    // 	e.preventDefault()
+    // 	console.log("form submit");
+    // 	$.post( "/submit",{ imgUri: imgUri });
+    // 	// $(this).submit();
+    // 	return false;
+    // });
+
+    function take_snapshot() {
+    	console.log("take shot");
+        Webcam.snap( function(data_uri) {
+            document.getElementById('my_result').innerHTML = '<img src="'+data_uri+'"/>';
+            imgUri = data_uri;
+            $("#img").val(decodeURIComponent(imgUri));
+        } );
+    }
+</script>
+
+</body>
+</html>

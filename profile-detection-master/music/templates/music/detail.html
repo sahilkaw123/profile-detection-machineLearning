@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>{{uid.name}}</title>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+	<!-- Optional theme -->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+
+	<!-- <script src="https://pixlcore.com/demos/webcamjs/webcam.js"></script> -->
+	<!-- <script src="/static/webcam1.js"></script> -->
+	<style type="text/css">
+		.x1{
+			margin-bottom: 5px;
+		}
+		.list{
+			background: #ccc;
+			border: solid 1px;
+			margin: 3px 0;
+			border-radius: 5px;
+			height: 60px;
+			overflow: hidden;
+		}
+		ul{
+			list-style-type: none;
+		}
+		.list:hover{
+			background: #eee;
+			cursor: pointer;
+			height: auto;
+		}
+	</style>
+</head>
+<body >
+<div class="container-fluid">
+	<div class="row text-center" style="margin-top: 50px;">
+	<div class="col-xs-5">
+		<!-- <img src="{{s.imgUrl}}" width="150" > -->
+		<img src="{{imgUrl}}" width="150" >
+		<!-- <h1>Milan {{id}}</h1> -->
+		<h1 id="name"> ..</h1>
+		<a href="https://sjsu.instructure.com/courses/1204953/users/{{id}}">Canvas profile link</a>
+	</div>
+	<div class="col-xs-7">
+		<!-- <h3> user-id:  {{ uid.uid }}</h3> -->
+		<h5> Date: {{ uid.date }}</h5>
+		<u1>
+			{% for record in uid.record_set.all %}
+			<li class="list"> 
+				<div class="x1"><h6 style="display: inline"> Meeting No: {{ record.mrecord }}</h6> - <i>{{record.date1}}</i></div>
+			 	<p><h6 style="display: inline">Meeting Details:- </h6> {{ record.meeting }} </p>
+			 </li>
+		 	{% endfor %}
+			
+		</u1>
+	</div>
+	</div>
+	<input id="n" type="hidden" name="name" value="{{name}}">
+	<!-- {{name}} -->
+</div>	
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+<script type="text/javascript">
+	// var name = {{name}};
+	var name = $('#n').val();
+	var a = jQuery.parseJSON(name);
+	console.log(jQuery.parseJSON(name));
+	console.log(a.short_name);
+	$("#name").text(a.short_name);
+
+</script>
+</body>
+</html>

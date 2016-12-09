@@ -1,0 +1,10 @@
+{% if all_userdata %}
+	<h3>Student Name:</h3>
+	<ul>
+		{% for userdata in all_userdata %}
+		<li><a href="/music/{{userdata.uid}}/"> {{userdata.name}} </a></li>
+		{% endfor %}
+	<ul>	
+{% else %}
+	<h3>You dont have any student record</h3>
+{% endif %}		
